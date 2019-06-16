@@ -22,11 +22,16 @@ public class JoystickView extends View implements Runnable {
     private int centerX = 0;
     private int centerY = 0;
     private Paint padCircle;
+    private Paint padStroke;
     private Paint joystickCircle;
     private int padRadius;
     private int joystickRadius;
 
-
+    /***
+     * interface for listeners that want the joystick update values.
+     * values are between -1 to 1 in both variables.
+     * to listen to update, create a new listener and set it by set function below.
+     */
     public interface OnJoystickMoveListener {
         public void onValueChanged(float horizontalValue, float verticalValue);
     }
@@ -36,13 +41,20 @@ public class JoystickView extends View implements Runnable {
         initJoystickView();
     }
 
+    /***
+     * initialize joystick paint options
+     */
     protected void initJoystickView() {
         padCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
-        padCircle.setColor(Color.GRAY);
-        padCircle.setStyle(Paint.Style.FILL_AND_STROKE);
+        padCircle.setColor(Color.argb(255, 211, 211, 211));
+        padCircle.setStyle(Paint.Style.FILL);
+
+        padStroke = new Paint(Paint.ANTI_ALIAS_FLAG);
+        padStroke.setColor(Color.parseColor("#4277A8"));
+        padStroke.setStyle(Paint.Style.FILL);
 
         joystickCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
-        joystickCircle.setColor(Color.GREEN);
+        joystickCircle.setColor(Color.parseColor("#00AF50"));
         joystickCircle.setStyle(Paint.Style.FILL);
     }
 
@@ -52,8 +64,8 @@ public class JoystickView extends View implements Runnable {
         joystickX = (int) getWidth() / 2;
         joystickY = (int) getHeight() / 2;
         int d = Math.min(w, h);
-        joystickRadius = (int) (d / 2 * 0.25);
-        padRadius = (int) (d / 2 * 0.75);
+        joystickRadius = (int) (d / 2 * 0.22);
+        padRadius = (int) (d / 2 * 0.80);
     }
 
     @Override
@@ -62,6 +74,7 @@ public class JoystickView extends View implements Runnable {
         centerX = (int) ((getWidth()) / 2);
         centerY = (int) ((getHeight()) / 2);
 
+        canvas.drawCircle(centerX, centerY, padRadius + 10, padStroke);
         canvas.drawCircle(centerX, centerY, padRadius, padCircle);
 
         canvas.drawCircle(joystickX, joystickY, joystickRadius, joystickCircle);
@@ -90,7 +103,7 @@ public class JoystickView extends View implements Runnable {
         joystickY = (int) event.getY();
         double abs = Math.sqrt((joystickX - centerX) * (joystickX - centerX)
                 + (joystickY - centerY) * (joystickY - centerY));
-        if (abs > padRadius) {
+        if (abs > padRadius + 10) {
             joystickX = (int) ((joystickX - centerX) * padRadius / abs + centerX);
             joystickY = (int) ((joystickY - centerY) * padRadius / abs + centerY);
         }

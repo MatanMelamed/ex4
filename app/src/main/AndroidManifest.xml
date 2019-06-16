@@ -13,12 +13,13 @@
             android:theme="@style/AppTheme">
 
         <activity
-                android:name="com.example.ex4.JoystickActivity"
-                android:parentActivityName="com.example.ex4.LoginActivity">
+                android:name=".JoystickActivity"
+                android:parentActivityName=".LoginActivity">
         </activity>
-        <activity android:name="com.example.ex4.LoginActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
