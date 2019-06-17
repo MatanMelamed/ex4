@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.ex4">
+          package="com.example.Ex4">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -13,10 +13,10 @@
             android:theme="@style/AppTheme">
 
         <activity
-                android:name=".JoystickActivity"
-                android:parentActivityName=".LoginActivity">
+                android:name="com.example.Ex4.JoystickActivity"
+                android:parentActivityName="com.example.Ex4.LoginActivity">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.example.Ex4.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

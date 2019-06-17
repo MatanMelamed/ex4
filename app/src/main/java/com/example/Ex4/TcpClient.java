@@ -1,4 +1,4 @@
-package com.example.ex4;
+package com.example.Ex4;
 
 import android.util.Log;
 
@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class TcpClient {
 
-    private static final String TAG = "Joy";
+    private static final String TAG = "TcpClient";
 
     private boolean mRun;
     private String serverIP;
@@ -31,6 +31,7 @@ public class TcpClient {
         return mRun;
     }
 
+    // create a socket with the information currently set.
     public void Start() {
         mRun = true;
 
@@ -52,6 +53,7 @@ public class TcpClient {
 
     }
 
+    // Stop the client by closing the socket and flushing the buffer.
     public void Stop() {
         mRun = false;
 
@@ -69,6 +71,7 @@ public class TcpClient {
         mBufferOut = null;
     }
 
+    // Sends a given message via client in another thread.
     public void SendMessage(final String message) {
         Runnable runnable = new Runnable() {
             @Override

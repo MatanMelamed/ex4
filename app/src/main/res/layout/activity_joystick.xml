@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".JoystickActivity"
         android:background="@drawable/background_design">
-    <com.example.ex4.JoystickView
+    <com.example.Ex4.JoystickView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/joystickView"
